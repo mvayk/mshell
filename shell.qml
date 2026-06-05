@@ -1,18 +1,24 @@
+import QtQuick
+import QtQuick.Layouts
 import Quickshell
 import Quickshell.Wayland
-import QtQuick
 
-PanelWindow {
-    anchors.top: true
-    anchors.left: true
-    anchors.right: true
-    implicitHeight: 30
-    color: "#1a1b26"
+import Niri
 
-    Text {
-        anchors.centerIn: parent
-        text: "My First Bar"
-        color: "#a9b1d6"
-        font.pixelSize: 14
+import "./modules/bar/"
+
+ShellRoot{
+    id: root
+
+    Niri {
+        id: niri
+        Component.onCompleted: connect()
+
+        onConnected: console.info("Connected to niri")
+        onErrorOccurred: function(error) {
+            console.error("Niri error:", error)
+        }
     }
+
+    LazyLoader{ active: true; component: Bar{} }
 }
