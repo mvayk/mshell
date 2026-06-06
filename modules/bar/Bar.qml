@@ -1,46 +1,79 @@
 import Quickshell
 import Quickshell.Wayland
+import Quickshell.Io
 import QtQuick
 import QtQuick.Layouts
 
-PanelWindow {
-    anchors.top: true
-    anchors.left: true
-    anchors.right: true
-    implicitHeight: 30
-    color: "#1a1b26"
+import qs.components
 
-    Text {
-        anchors.centerIn: parent
-        text: "mshell"
-        color: "#a9b1d6"
-        font.pixelSize: 14
-    }
+Variants {
+    model: Quickshell.screens;
+    PanelWindow {
+        id: root
+        required property var modelData
+        screen: modelData
 
-    Rectangle {
+        property int cpuUsage: 0
+        property int memUsage: 0
+        property var lastCpuIdle: 0
+        property var lastCpuTotal: 0
+
+        anchors.top: true
+        anchors.left: true
+        anchors.right: true
+        implicitHeight: 30
+        color: DefaultTheme.base
+
         Row {
             id: row
             anchors.centerIn: parent
-            spacing: 8
+            spacing: DefaultTheme.spacing
 
             Repeater {
                 model: niri.workspaces
-
                 Item {
-                    implicitWidth: 10
-                    implicitHeight: 10
-
+                    implicitWidth: 12
+                    implicitHeight: 12
                     Rectangle {
                         anchors.fill: parent
-                        radius: 5
-
-                        color: (model.isActive || model.activeWindowId > 0) ? "#7aa2f7" : "444b6a";
+                        radius: DefaultTheme.radiusSmall
+                        color: (model.isActive || model.activeWindowId > 0) ? DefaultTheme.text : DefaultTheme.muted
                         opacity: model.isActive ? 1.0 : 0.5
                         scale: model.isActive ? 1.25 : 1.0
                     }
                 }
             }
+
+            Item { Layout.fillWidth: true }
+
+            Text {
+                text: "CPU: " + root.cpuUsage + "%"
+                color: DefaultTheme.text
+                font { family: DefaultTheme.fontFamily; pixelSize: DefaultTheme.fontSize; bold: true }
+            }
+
+            Rectangle { width: 1; height: 16; color: DefaultTheme.border }
+
+            Text {
+                text: "Mem: " + root.memUsage + "%"
+                color: DefaultTheme.text
+                font { family: DefaultTheme.fontFamily; pixelSize: DefaultTheme.fontSize; bold: true }
+            }
+
+            Rectangle { width: 1; height: 16; color: DefaultTheme.border }
+
+            Text {
+                id: clock
+                color: DefaultTheme.text
+                font { family: DefaultTheme.fontFamily; pixelSize: DefaultTheme.fontSize; bold: true }
+                text: Qt.formatDateTime(new Date(), "ddd, MMM dd - HH:mm")
+                Timer {
+                    interval: 1000
+                    running: true
+                    repeat: true
+                    onTriggered: clock.text = Qt.formatDateTime(new Date(), "ddd, MMM dd - HH:mm")
+                }
+            }
         }
-        //Item { Layout.fillWidth: true }
     }
 }

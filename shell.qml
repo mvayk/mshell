@@ -5,7 +5,8 @@ import Quickshell.Wayland
 
 import Niri
 
-import "./modules/bar/"
+import "modules/bar/"
+import "../components" as Components
 
 ShellRoot{
     id: root
