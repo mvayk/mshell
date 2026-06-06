@@ -26,7 +26,9 @@ Variants {
 
         Row {
             id: row
-            anchors.centerIn: parent
+            anchors.left: parent.left
+            anchors.leftMargin: 8
+            anchors.verticalCenter: parent.verticalCenter
             spacing: DefaultTheme.spacing
 
             Repeater {
@@ -46,24 +48,13 @@ Variants {
 
             Item { Layout.fillWidth: true }
 
-            Text {
-                text: "CPU: " + root.cpuUsage + "%"
-                color: DefaultTheme.text
-                font { family: DefaultTheme.fontFamily; pixelSize: DefaultTheme.fontSize; bold: true }
-            }
-
-            Rectangle { width: 1; height: 16; color: DefaultTheme.border }
-
-            Text {
-                text: "Mem: " + root.memUsage + "%"
-                color: DefaultTheme.text
-                font { family: DefaultTheme.fontFamily; pixelSize: DefaultTheme.fontSize; bold: true }
-            }
-
-            Rectangle { width: 1; height: 16; color: DefaultTheme.border }
+        }
 
             Text {
                 id: clock
+                anchors.right: parent.right
+                anchors.rightMargin: DefaultTheme.spacing
+                anchors.verticalCenter: parent.verticalCenter
                 color: DefaultTheme.text
                 font { family: DefaultTheme.fontFamily; pixelSize: DefaultTheme.fontSize; bold: true }
                 text: Qt.formatDateTime(new Date(), "ddd, MMM dd - HH:mm")
@@ -74,6 +65,5 @@ Variants {
                     onTriggered: clock.text = Qt.formatDateTime(new Date(), "ddd, MMM dd - HH:mm")
                 }
             }
-        }
     }
 }

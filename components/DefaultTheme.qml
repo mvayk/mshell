@@ -26,9 +26,9 @@ QtObject {
     readonly property color selected:       "#ffffff10"
 
     // Shape
-    readonly property int radius:           8
-    readonly property int radiusSmall:      4
-    readonly property int radiusLarge:      12
+    readonly property int radius:           0
+    readonly property int radiusSmall:      0
+    readonly property int radiusLarge:      0
     readonly property int spacing:          12
     readonly property int borderWidth:      1
 
