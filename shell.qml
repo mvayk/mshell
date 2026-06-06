@@ -13,6 +13,7 @@ ShellRoot{
 
     Niri {
         id: niri
+
         Component.onCompleted: connect()
 
         onConnected: console.info("Connected to niri")

@@ -8,6 +8,7 @@ import qs.components
 
 Variants {
     model: Quickshell.screens;
+
     PanelWindow {
         id: root
         required property var modelData
@@ -24,46 +25,39 @@ Variants {
         implicitHeight: 30
         color: DefaultTheme.base
 
-        Row {
+        margins.right: 400
+        margins.left: 400
+        margins.top: DefaultTheme.margin
+
+        RowLayout {
             id: row
             anchors.left: parent.left
-            anchors.leftMargin: 8
+            anchors.leftMargin: DefaultTheme.margin
             anchors.verticalCenter: parent.verticalCenter
             spacing: DefaultTheme.spacing
 
-            Repeater {
-                model: niri.workspaces
-                Item {
-                    implicitWidth: 12
-                    implicitHeight: 12
-                    Rectangle {
-                        anchors.fill: parent
-                        radius: DefaultTheme.radiusSmall
-                        color: (model.isActive || model.activeWindowId > 0) ? DefaultTheme.text : DefaultTheme.muted
-                        opacity: model.isActive ? 1.0 : 0.5
-                        scale: model.isActive ? 1.25 : 1.0
-                    }
-                }
+            Workspaces {
+                screen: root.screen
+                Layout.preferredWidth: 12 * count
             }
 
             Item { Layout.fillWidth: true }
-
         }
 
-            Text {
-                id: clock
-                anchors.right: parent.right
-                anchors.rightMargin: DefaultTheme.spacing
-                anchors.verticalCenter: parent.verticalCenter
-                color: DefaultTheme.text
-                font { family: DefaultTheme.fontFamily; pixelSize: DefaultTheme.fontSize; bold: true }
-                text: Qt.formatDateTime(new Date(), "ddd, MMM dd - HH:mm")
-                Timer {
-                    interval: 1000
-                    running: true
-                    repeat: true
-                    onTriggered: clock.text = Qt.formatDateTime(new Date(), "ddd, MMM dd - HH:mm")
-                }
+        Text {
+            id: clock
+            anchors.right: parent.right
+            anchors.rightMargin: DefaultTheme.margin
+            anchors.verticalCenter: parent.verticalCenter
+            color: DefaultTheme.text
+            font { family: DefaultTheme.fontFamily; pixelSize: DefaultTheme.fontSize; bold: true }
+            text: Qt.formatDateTime(new Date(), "ddd, MMM dd - HH:mm")
+            Timer {
+                interval: 1000
+                running: true
+                repeat: true
+                onTriggered: clock.text = Qt.formatDateTime(new Date(), "ddd, MMM dd - HH:mm")
             }
+        }
     }
 }

@@ -26,11 +26,12 @@ QtObject {
     readonly property color selected:       "#ffffff10"
 
     // Shape
-    readonly property int radius:           0
-    readonly property int radiusSmall:      0
-    readonly property int radiusLarge:      0
+    readonly property int radius:           4
+    readonly property int radiusSmall:      8
+    readonly property int radiusLarge:      10 
     readonly property int spacing:          12
     readonly property int borderWidth:      1
+    readonly property int margin:           12
 
     // Typography
     readonly property string fontFamily:    "JetBrainsMono Nerd Font"
