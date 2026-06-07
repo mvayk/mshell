@@ -28,7 +28,8 @@ QtObject {
     // Shape
     readonly property int radius:           4
     readonly property int radiusSmall:      8
-    readonly property int radiusLarge:      10 
+    readonly property int radiusLarge:      10
+    readonly property int radiusExtra:      20
     readonly property int spacing:          12
     readonly property int borderWidth:      1
     readonly property int margin:           12

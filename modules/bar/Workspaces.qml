@@ -25,6 +25,12 @@ Item {
                     radius: DefaultTheme.radiusSmall
                     color: model.isActive ? DefaultTheme.text : DefaultTheme.muted
                     scale: model.isActive ? 1.25 : 1.0
+
+                    MouseArea {
+                        anchors.fill: parent
+                        cursorShape: Qt.PointingHandCursor
+                        onClicked: niri.focusWorkspaceById(model.id)
+                    }
                 }
             }
         }
