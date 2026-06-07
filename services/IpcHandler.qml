@@ -5,9 +5,12 @@ import QtQuick
 import QtQuick.Layouts
 import qs.components
 
-IpcHandler {
-    target: "trigger"
-    function handle(action: string) {
-        Shortcuts.trigger(action)
+Item {
+    IpcHandler {
+        enabled: true
+        target: "trigger"
+        function handle(action: string): void {
+            Shortcuts.trigger(action)
+        }
     }
 }

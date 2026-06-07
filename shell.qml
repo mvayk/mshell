@@ -1,14 +1,16 @@
 import QtQuick
 import QtQuick.Layouts
 import Quickshell
+import Quickshell.Io
 import Quickshell.Wayland
 
 import Niri
 
 import "modules/bar/"
 import "modules/launcher/"
-import "./components" as Components
-import "./services" as Services
+
+import "components" as Components
+import "services" as Services
 
 ShellRoot{
     id: mshell
@@ -23,6 +25,8 @@ ShellRoot{
             console.error("Niri error:", error)
         }
     }
+
+    IpcHandler {}
 
     LazyLoader{ active: true; component: Bar{} }
 }
