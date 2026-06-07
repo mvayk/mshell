@@ -23,36 +23,22 @@ Variants {
             anchors.leftMargin: DefaultTheme.spacing
             anchors.rightMargin: DefaultTheme.spacing
 
-            // left — workspaces
-            Rectangle {
+            Island {
                 anchors.left: parent.left
                 anchors.verticalCenter: parent.verticalCenter
-                height: 30
-                width: workspaceRow.implicitWidth + DefaultTheme.margin
-                color: DefaultTheme.base
-                radius: DefaultTheme.radiusExtra
-
                 Row {
                     id: workspaceRow
-                    anchors.centerIn: parent
                     spacing: DefaultTheme.spacing
                     Workspaces { screen: root.screen }
                 }
             }
 
-            // center — window title
-            Rectangle {
+            Island {
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.verticalCenter: parent.verticalCenter
-                height: 30
-                width: windowTitle.implicitWidth + DefaultTheme.margin * 2
-                color: DefaultTheme.base
-                radius: DefaultTheme.radiusExtra
                 visible: niri.focusedWindow !== null
-
                 Text {
                     id: windowTitle
-                    anchors.centerIn: parent
                     text: niri.focusedWindow?.title ?? ""
                     font.family: DefaultTheme.fontFamily
                     font.pixelSize: DefaultTheme.fontSize - 2
@@ -61,33 +47,20 @@ Variants {
                 }
             }
 
-            // right — battery + time
             Row {
                 anchors.right: parent.right
                 anchors.verticalCenter: parent.verticalCenter
                 spacing: DefaultTheme.spacing
 
-                Rectangle {
-                    height: 30
-                    width: batteryWidget.implicitWidth + DefaultTheme.margin * 2
-                    color: DefaultTheme.base
-                    radius: DefaultTheme.radiusExtra
-
+                Island {
                     Battery {
                         id: batteryWidget
-                        anchors.centerIn: parent
                     }
                 }
 
-                Rectangle {
-                    height: 30
-                    width: timeWidget.implicitWidth + DefaultTheme.margin * 2
-                    color: DefaultTheme.base
-                    radius: DefaultTheme.radiusExtra
-
+                Island {
                     Time {
                         id: timeWidget
-                        anchors.centerIn: parent
                     }
                 }
             }
