@@ -2,6 +2,7 @@
   pkgs,
   qml-niri,
   quickshell,
+  matugen,
 }:
 pkgs.stdenv.mkDerivation {
   name = "mshell";

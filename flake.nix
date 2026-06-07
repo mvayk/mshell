@@ -40,7 +40,7 @@
         matugen = matugen.packages.${system}.default;
         mshell = mshellPkg;
         default = pkgs.symlinkJoin {
-          name = "quickshell-niri";
+          name = "quickshell";
           paths = [
             quickshell.packages.${system}.default
             qml-niri.packages.${system}.default
