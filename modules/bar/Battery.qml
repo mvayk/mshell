@@ -8,7 +8,7 @@ Item {
     id: root
 
     visible: false
-    implicitWidth: battBody.width + nub.width + 2
+    implicitWidth: battBody.width + 2
     implicitHeight: battBody.height
 
     property int    capacity: 100

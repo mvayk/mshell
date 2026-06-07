@@ -6,7 +6,7 @@ Item {
     id: root
     required property var screen
 
-    implicitWidth: row.implicitWidth + DefaultTheme.margin
+    implicitWidth: row.implicitWidth
     implicitHeight: 12
 
     Row {
