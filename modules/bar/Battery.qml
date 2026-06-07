@@ -17,8 +17,8 @@ Item {
     property bool   full:     status === "Full"
 
     property color fillColor: {
-        if (charging || full)  return "#185FA5"
-        if (capacity >= 40)    return "#1D9E75"
+        if (charging || full)  return "#1D9E75"
+        if (capacity >= 40)    return "#88E788"
         if (capacity >= 20)    return "#BA7517"
         return "#E24B4A"
     }
@@ -49,7 +49,7 @@ Item {
         anchors.left: parent.left
         anchors.verticalCenter: parent.verticalCenter
         width: 40; height: 16
-        radius: 2
+        radius: 4
         color: "transparent"
         border.width: 1.5
         border.color: root.fillColor
@@ -65,7 +65,8 @@ Item {
 
         Text {
             anchors.centerIn: parent
-            text: (root.charging ? "⚡ " : "") + root.capacity + "%"
+            //text: (root.charging ? "󱐋 " : "") + root.capacity + "%"
+            text: (root.charging ? "󱐋" : "")
             font.family: DefaultTheme.fontFamily
             font.pixelSize: 10
             font.weight: Font.Bold

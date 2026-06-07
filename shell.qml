@@ -6,6 +6,7 @@ import Quickshell.Wayland
 import Niri
 
 import "modules/bar/"
+import "modules/launcher/"
 import "../components" as Components
 
 ShellRoot{
