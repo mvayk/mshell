@@ -11,6 +11,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.quickshell.follows = "quickshell";
     };
+    matugen = {
+      url = "github:/InioX/Matugen";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   outputs =
     {
@@ -18,6 +22,7 @@
       nixpkgs,
       quickshell,
       qml-niri,
+      matugen,
     }:
     let
       system = "x86_64-linux";
@@ -25,12 +30,14 @@
       mshellPkg = pkgs.callPackage ./nix/package.nix {
         qml-niri = qml-niri.packages.${system}.default;
         quickshell = quickshell.packages.${system}.default;
+        matugen = matugen.packages.${system}.default;
       };
     in
     {
       packages.${system} = {
         quickshell = quickshell.packages.${system}.default;
         qml-niri = qml-niri.packages.${system}.default;
+        matugen = matugen.packages.${system}.default;
         mshell = mshellPkg;
         default = pkgs.symlinkJoin {
           name = "quickshell-niri";
@@ -45,6 +52,7 @@
         packages = [
           quickshell.packages.${system}.default
           qml-niri.packages.${system}.default
+          matugen.packages.${system}.default
         ];
         shellHook = ''
           export QML2_IMPORT_PATH="${qml-niri.packages.${system}.default}/lib/qt-6/qml:$QML2_IMPORT_PATH"
@@ -61,6 +69,7 @@
             pkgs.callPackage ./nix/package.nix {
               qml-niri = qml-niri.packages.${system}.default;
               quickshell = quickshell.packages.${system}.default;
+              matugen = matugen.packages.${system}.default;
             }
           }/share/quickshell";
           home.sessionVariables = {

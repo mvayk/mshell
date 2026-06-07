@@ -7,10 +7,11 @@ import Niri
 
 import "modules/bar/"
 import "modules/launcher/"
-import "../components" as Components
+import "./components" as Components
+import "./services" as Services
 
 ShellRoot{
-    id: root
+    id: mshell
 
     Niri {
         id: niri
