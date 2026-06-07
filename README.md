@@ -10,3 +10,6 @@ nix flake lock --update-input mshell
 ```
 niri msg action spawn -- nix develop ~/dev/mshell --command qs -c ~/dev/mshell
 ```
+```
+qs -c ~/dev/mshell ipc show
+```

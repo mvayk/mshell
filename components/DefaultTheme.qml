@@ -34,6 +34,8 @@ QtObject {
     readonly property int borderWidth:      1
     readonly property int margin:           20
 
+    property string wallpaper: "~/Pictures/wallpapers/fav.jpg"
+
     // Typography
     readonly property string fontFamily:    "JetBrainsMono Nerd Font"
     readonly property int fontSize:         14

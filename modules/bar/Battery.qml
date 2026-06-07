@@ -48,7 +48,7 @@ Item {
         id: battBody
         anchors.left: parent.left
         anchors.verticalCenter: parent.verticalCenter
-        width: 40; height: 16
+        width: 36; height: 16
         radius: 4
         color: "transparent"
         border.width: 1.5
