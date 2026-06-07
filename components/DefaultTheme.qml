@@ -32,7 +32,7 @@ QtObject {
     readonly property int radiusExtra:      20
     readonly property int spacing:          12
     readonly property int borderWidth:      1
-    readonly property int margin:           12
+    readonly property int margin:           20
 
     // Typography
     readonly property string fontFamily:    "JetBrainsMono Nerd Font"

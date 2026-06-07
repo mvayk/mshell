@@ -1,27 +1,29 @@
 import QtQuick
 import QtQuick.Layouts
-
 import qs.components
 
 Item {
     id: root
     required property var screen
 
+    implicitWidth: row.implicitWidth + DefaultTheme.margin
+    implicitHeight: 12
+
     Row {
         id: row
-        anchors.left: parent.left
-        anchors.leftMargin: DefaultTheme.margin
-        anchors.verticalCenter: parent.verticalCenter
+        anchors.centerIn: parent
         spacing: DefaultTheme.spacing
 
         Repeater {
             model: niri.workspaces
             Item {
-                implicitWidth: model.output === root.screen.name ? 12 : 0
-                implicitHeight: model.output === root.screen.name ? 12 : 0
+                width:  model.output === root.screen.name ? 12 : 0
+                height: 12
                 visible: model.output === root.screen.name
+
                 Rectangle {
-                    anchors.fill: parent
+                    anchors.centerIn: parent
+                    width: 12; height: 12
                     radius: DefaultTheme.radiusSmall
                     color: model.isActive ? DefaultTheme.text : DefaultTheme.muted
                     scale: model.isActive ? 1.25 : 1.0
@@ -34,6 +36,5 @@ Item {
                 }
             }
         }
-        Item { Layout.fillWidth: true }
     }
 }

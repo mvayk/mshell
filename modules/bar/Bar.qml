@@ -3,78 +3,93 @@ import Quickshell.Wayland
 import Quickshell.Io
 import QtQuick
 import QtQuick.Layouts
-
 import qs.components
 
 Variants {
     model: Quickshell.screens;
-
     PanelWindow {
         id: root
         required property var modelData
         screen: modelData
-
         anchors.top: true
         anchors.left: true
         anchors.right: true
         implicitHeight: 30
-        //color: DefaultTheme.base
-
-        margins.right: 400
-        margins.left: 400
-        margins.top: DefaultTheme.margin
-
+        margins.right: 10
+        margins.left: 10
+        margins.top: 10
         color: "transparent"
-
-        Rectangle {
+        RowLayout {
             anchors.fill: parent
-            implicitHeight: 30
-            color: DefaultTheme.base
+            spacing: 0
 
-            bottomLeftRadius: DefaultTheme.radiusExtra
-            topLeftRadius: DefaultTheme.radiusExtra
-            bottomRightRadius: DefaultTheme.radiusExtra
-            topRightRadius: DefaultTheme.radiusExtra
-
-            RowLayout {
-                id: rowLeft
-                anchors.left: parent.left
-                anchors.leftMargin: DefaultTheme.margin
-                anchors.verticalCenter: parent.verticalCenter
-                spacing: DefaultTheme.spacing
-
-                Workspaces {
-                    screen: root.screen
-                    Layout.preferredWidth: 12 * count
+            Item {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                Rectangle {
+                    anchors.centerIn: parent
+                    height: 30
+                    width: workspaceRow.implicitWidth + DefaultTheme.margin
+                    color: DefaultTheme.base
+                    radius: DefaultTheme.radiusExtra
+                    Row {
+                        id: workspaceRow
+                        anchors.centerIn: parent
+                        spacing: DefaultTheme.spacing
+                        Workspaces { screen: root.screen }
+                    }
                 }
-
-                Item { Layout.fillWidth: true }
-            }
-        }
-
-        RowLayout {
-            id: rowCenter
-            anchors {
-                horizontalCenter: parent.horizontalCenter
-                verticalCenter: parent.verticalCenter
             }
 
-            Text {
-                text: niri.focusedWindow?.title ?? ""
-                font.family: DefaultTheme.fontFamily
-                font.pixelSize: DefaultTheme.fontSize - 2
-                color: DefaultTheme.muted
+            Item {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                Rectangle {
+                    anchors.centerIn: parent
+                    height: 30
+                    width: windowTitle.implicitWidth + DefaultTheme.margin * 2
+                    color: DefaultTheme.base
+                    radius: DefaultTheme.radiusExtra
+                    visible: niri.focusedWindow !== null
+                    Text {
+                        id: windowTitle
+                        anchors.centerIn: parent
+                        text: niri.focusedWindow?.title ?? ""
+                        font.family: DefaultTheme.fontFamily
+                        font.pixelSize: DefaultTheme.fontSize - 2
+                        color: DefaultTheme.muted
+                    }
+                }
             }
-        }
 
-        RowLayout {
-            id: rowRight
-            anchors.right: parent.right
-            anchors.rightMargin: DefaultTheme.margin
-            anchors.verticalCenter: parent.verticalCenter
-            spacing: DefaultTheme.spacing
-
-            Time { }
+            Item {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                Row {
+                    anchors.centerIn: parent
+                    spacing: DefaultTheme.spacing
+                    Rectangle {
+                        height: 30
+                        width: batteryWidget.implicitWidth + DefaultTheme.margin * 2
+                        color: DefaultTheme.base
+                        radius: DefaultTheme.radiusExtra
+                        Battery {
+                            id: batteryWidget
+                            anchors.centerIn: parent
+                        }
+                    }
+                    Rectangle {
+                        height: 30
+                        width: timeWidget.implicitWidth + DefaultTheme.margin * 2
+                        color: DefaultTheme.base
+                        radius: DefaultTheme.radiusExtra
+                        Time {
+                            id: timeWidget
+                            anchors.centerIn: parent
+                        }
+                    }
+                }
+            }
         }
     }
 }
