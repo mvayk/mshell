@@ -6,27 +6,28 @@ import Quickshell.Io
 
 Item {
     id: root
-    visible: false
+    visible: true
     implicitWidth: brightnessText.implicitWidth
     implicitHeight: brightnessText.implicitHeight
 
     property int brightness: 0
     property int maxBrightness: 100
 
+
     FileView {
         id: brightnessReader
         path: "/sys/class/backlight/intel_backlight/brightness"
-        onTextChanged: root.brightness = parseInt(text.trim()) || 0
+        onTextChanged: root.brightness = parseInt(text().trim()) || 0
     }
 
     FileView {
         id: maxBrightnessReader
         path: "/sys/class/backlight/intel_backlight/max_brightness"
-        onTextChanged: root.maxBrightness = parseInt(text.trim()) || 100
+        onTextChanged: root.maxBrightness = parseInt(text().trim()) || 100
     }
 
     Timer {
-        interval: 5000; running: true; repeat: true
+        interval: 250; running: true; repeat: true
         onTriggered: { brightnessReader.reload(); maxBrightnessReader.reload() }
     }
 

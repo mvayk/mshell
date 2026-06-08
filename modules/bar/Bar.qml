@@ -53,8 +53,8 @@ Variants {
                 spacing: DefaultTheme.spacing
 
                 Island {
-                    Volume {
-                        id volumeWidget
+                    Brightness {
+                        id: brightnessWidget
                     }
                     Battery {
                         id: batteryWidget
